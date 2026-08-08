@@ -84,3 +84,14 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+
+
+class KMeans : 
+
+    def __init__(self,max_iterations=1000,n_clusters=3,lambda_=0.01,tol=1e-5):
+        self.n_clusters=n_clusters
+        self.max_iters=max_iters
+        self.tol=tol
+        self.centroids=None
