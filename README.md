@@ -111,3 +111,143 @@ what makes data unreliable :
 - the data forces you to have a clear problem definition
 - - : the data is expensive for cetrain domains 
 - Good data typically requires multiple iterations.
+
+## Sampling and splitting the data : 
+- it's ofren a struggle to gather enough data for a machine learning project and sometimes you got much data and you must select a subset of examples of training.
+- How do you select that subset ? 
+- example of google search. At what granularity would you sample its massive amounts of data? would you use random queries ? random sessions ? random users? 
+- the answer depends on the problem: what do you want to predict, and what features do you want ? 
+
+### Imbalanced data : 
+- a classification dataset with skewed class proportions is called imbalances. Classes that make up a large proportion of the data set are called majority classes. Those who make up the small part are called the minority classes.
+
+- what called as imbalanced ? The answer could range from mild to extreme, as the table below shows : 
+![alt text](images/image-7.png)
+### why to look out for imbalancecd data ? 
+- consider the following example : a model that detect fraud , instances of fraud happen once per 200 transactions in this data set , so in the true distribution about 0.5 percent of the data is positive 
+![alt text](images/image-8.png)
+- why would this problematic ? 
+- with so few positives relative to negatives , the training model will spend most of its time on negative examples and not learn enough from positive ones. 
+- if you have imbalanced data set , first try training on the true distribution.If the model works well and generalizes, you're done ! if not try the following techniques : 
+### Downsampling and Upweighting : 
+- An effective way to handle imbalanced data is to downsample and upweight the majority class. Let's start by defining those two new terms : 
+- *Downsampling* : means training on a disproportionately low subset of the majority class examples 
+- *Upweighting* means addingg an example weight to the downsampled class equal to the factor by which you downsampled.
+
+### step 1 : downsample the majority class _ 
+- consider again our example of fraud dataset with 1 positive to 200 negatives. We can downsample by a factor of 20 , taking 1/10 negatives , now about 10 % of our data is positive , which will be much better for training our model. 
+### step 2 : upweight the downsampled class 
+- the last step is to add example weights to t he downsampled class . Since we downsampled by a factor of 20, the exampe weight should be 20 
+![alt text](images/image-9.png)
+
+### weights : 
+- here we're talking about example weights, which means counting an individual example more importantly during training. An example weight of 10 means the model treats the examples as 10 times as important (when computing loss) as it would an example of weight 1. 
+- the weight should be equal to the factor you used to downsample : example weight= origin example weight x downsampling factor 
+### why downsampling and upweight ? 
+- it may seem odd to add example weights after downsampling. We were trying to make our model improve on the minority class -- why would we upweight the majority ? these are the resulting changes : 
+1. faster convergence : during training, we see the minority class more often , which will help the model converge faster.
+2. Disk space : By consolidating the mojority class into fewer examples with larger weights, we spend less disk space storing them. this saving allows more disk space for the minority class . so we can collect a greater number and a wider range of examples from that class 
+3. Calibration:  Upweighting ensures or model is still calibrated , the outputs can stoll be interpreted as probabilites
+
+### Datasplitt examples : 
+
+- after  collecting your data and sampling where needed, the next step is to split your data into training sets, validation sets and testing sets 
+
+### why random splitting isnt the best approach 
+- while it is the best approach for many ML problems. it isnt always the right solution
+![alt text](images/image-10.png)
+![alt text](images/image-11.png)
+![alt text](images/image-12.png)
+
+### imbalanced data -- overfitting : 
+- if the training data is overly imbalanced, then the model will predict a non meaningful result -> this is called *Overfitting* 
+- to prevent overfiting there needs to be a fairly equal distribution of training samples for each classification, or range if label is a real value. 
+### overfitting : 
+- in data science courses, overfit model is explained as having high variance and low bias on the training set which leads to poor generalization on new testing data. 
+
+### how to limit overfitting 
+- Both overfitting and underfitting can lead to poor model performance. But by far the most common problem in applied machine learning is overfitting. 
+- overfitting is such a problem because the evaluation of machine learning algorithms on training data is different from the evaluation we actually care the most about, namely how well the algorithm well perform on unseen data.
+
+### how to limit overfitting : 
+- there are two important techniques that you can use : 
+1. Use a resampling technique to estimate the model accuracy.
+2. Hold back a validation test 
+
+### underfitting :
+- refers to a model that can neither model the training data or to generalize to new data. 
+- an underfit machine learning model is not a suitable model and will be obvius as it will have poor performance on the training data. 
+
+# Basic :
+Machine learning must  seem complex but it is really built out of a series of basic building blocks : 
+- overfitting : too much reliance on the training data
+- underfitting : a failure to learn the relationships in the training data
+- High variance : model changes significantly based on the training data
+- High bias : assumption about model lead to ignoring training data
+- Overfitting and underfitting cause poor generalization on the test set 
+- a validation set for model tuning can prevent under and overfitting. 
+- ...
+
+# FEATURE ENGINEERING : 
+![alt text](images/image-13.png)
+![alt text](images/image-14.png)
+Feature engineering is the art/science of representing the data the best way possible for a problem, Good feature engineering involves an elegant blend of domain knowledge , intuition and basic mathematical abilities 
+![alt text](images/image-15.png)
+
+### what best ? 
+---
+- the way yoy present your data in essence should denote the pertinent structures/properties of the underlying information in the most effective way possible. When you do feature engineering, you are essentially converting your data attributes into data features.
+
+### Attributes : 
+---
+- Attributes are basically all the dimensions present in your data. But do all of them , in the raw format , represent the underlying tends you want to learn in the best way possible ? maybe not 
+
+### Features : 
+---
+- so what you do in feature engineering is pre process your data so that your model algorithm has to spend minimus effort on wading through noise.
+- noise is any information that is not relevant to learning/predicting your ultimate goal. 
+- In fact using good features can even let you use considerably simpler models.
+
+- as with any technique in machine learning , always use validation to make sure that the new features you introduce really do improve your predictyions, instead of adding unecessary complexity to your pipeline.
+
+### decomposing categorical attributes: 
+why ?
+- since ML is based on mathematical equations, it would cause a problem when we keep categorical variables as is. 
+<br>
+*encoding methodologies* :
+- Nominal encoding : where order of the data does not matter 
+- Ordinal encoding : where the order of the data does matter 
+
+1. One hot encoding. 
+2. bel Encoding 
+3. Ordinal Encoding 
+4. Helmert Encoding 
+5. Binary Encoding
+6. Frequency Encoding
+7. Mean Encoding
+8. Weight of Evidence Encoding
+9. Probability Ratio Encoding
+10. Hashing Encoding
+11. Backward Difference Encoding
+12. Leave One Out Encoding
+13. James-Stein Encoding
+14. M-estimator Encoding
+
+## Binning / Bucketing : 
+---
+- sometimes , it makes more sense to represent a numerical attribute as a categorical one. 
+- example : consider a problem where preficting whether a person owns a certain item of clothing or not.
+- age might definitely be a factor here. what actually more pertinet is the age group 
+- 1-10 , 11-18,19-25,26-40 ...
+
+### binning : 
+- binning or grouping data is an important tool in preparing numerical data for machine learning 
+
+
+- binning also reduces the effect of tiny errors by rounfing off a given value to the nearest representative. 
+- Binning does not make sense if the number of your ranges is comparable to the total possible values, or if precision is very important to you. 
+
+### Bucketing
+- bucketing makes sense when the domain of your attribute can be divided into neat ranges, where all numbrs falling in a range imply a common characteristic 
+- it reduces overfitting in certain applications. 
+![alt text](images/image-16.png)
