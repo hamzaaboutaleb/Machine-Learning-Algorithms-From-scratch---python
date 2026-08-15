@@ -251,3 +251,119 @@ why ?
 - bucketing makes sense when the domain of your attribute can be divided into neat ranges, where all numbrs falling in a range imply a common characteristic 
 - it reduces overfitting in certain applications. 
 ![alt text](images/image-16.png)
+
+# BIG PARTT TO BE ADD HERE LATER ! 
+
+# Machine learning algorithms : 
+![alt text](images/image-17.png)
+
+## LINEAR REGRESSION : 
+- it is used to estimate real values (target variable) based on continuous variable(s).
+- Linear Regression is used for finding learning relationship between target and one or more predictors. 
+- The core idea is to obtain a line that best fit the data. 
+- the best fit line is the one for which total prediction error are as small as possible, error is the distance between the real value and the predicted one. 
+- Establish relationship between independent and dependent variables by fitting a best line. This best fit line is known as regression line and represented by a linear equation Y=a*X+b.
+![alt text](images/image-18.png)
+### Types of linear regression : 
+--- 
+- simple linear regression 
+- multiple linear regression 
+
+### 1 - simple linear regression 
+---
+- single dimension linear regression has one prediction and one target as input for the training simple. 
+- it uses these training sample to derive a line that predict values of y. 
+- the training sample are used to derive the values of a and b that minimise the error between actual and predicted values of y.
+- a is the slope and b is the y-intercept. 
+- dataset -> algo ML -> Function h(x)
+- this function will receive later x and give y.
+- as been mentionned before we want a line that minimises the error between the Y values in the trainingg samples and the h(x) values that the line passes through. 
+- so we define the error function for our algorithm so we can minimise that error. 
+### cost function : 
+- the cost function helps us figure out the best possible values for a and b which would provide the best fit line for the data points- 
+- since we want the best values for a and b , we convert this search problem into a minimization problem where we would like to minimize the error between the predicted value and the actual value. 
+![alt text](images/image-19.png)
+
+### minimize the error : 
+--- 
+- the values a and b must be chosen so that they minimize the error. If sum of squared error is taken as a metric to evaluate the model, then the goal to obtain a line that best reduces the error. 
+- Mean absolute error is the mean of the absolute value of errors 
+- Mean square error is the mean of the squared error  
+- Mean Absolute Percentage Error  
+- Mean percentage Error
+- Root Mean Squared Error (RMSE) is the square root of the mean of the squared errors.
+
+![alt text](images/image-20.png)
+
+![alt text](images/image-21.png)
+
+### how ?
+---
+- to determine how to best fit our model with given set of points, we want to minimize the distance between each of these point to our linear model.
+- calculating the totalError helps us determine how bad our model is so we can update it every step
+- but ... 
+### Minimizing the cost function : Gradient Descent 
+- Repeat until convergence:
+![alt text](images/image-22.png)
+- partial derivative
+- the derivative of a function of a real variable measures the sensitivity to change of the function value(output value) with respect to a change in its argument(input value)
+![alt text](images/image-23.png)
+- *slope*
+![alt text](images/image-24.png)
+- Learning rate : 
+![alt text](images/image-25.png)
+![alt text](images/image-26.png)
+![alt text](images/image-27.png)
+
+## Multi dimension linear regression : 
+
+- Each training sample has an x made up of multiple input values and a corresponding y with a singe value 
+- the inputs can be presented as an X matric in which row is sample and each column is a dimension. 
+- the outputs can b e represented as y matrix in which each row is a sample 
+![alt text](images/image-28.png)
+### basic layout : 
+- our predicted y value are calculated by multiplying the X matrix by a matrix of param , ϴ. 
+- if there are 2 dimension, then this equation defines plane, if there are mode dimension then it define hyperplane. ![alt text](images/image-29.png)
+
+## Logistic Regression : 
+![alt text](images/image-30.png)
+- in a lot of ways, linear regression and logistic regression are similar. But the biggest difference lies in what they are used for. 
+- Linear Regression algorithms are used to predict/forecast values but logistic regression is used for classification tasks
+- it is a classification not a regression algorithm 
+- it is used to estimate discrete values(binary values like 0 or 1 , yes or no , true or false) based on a given set of independent variable(s)
+![alt text](images/image-31.png)
+### LIR VS LOR : 
+![alt text](images/image-32.png)
+
+- Logistic regression is used when the dependent variable is categorical. 
+- to predict whether an email is spam of no , tumor is malignant or not , whether website is fraudulent or not ... 
+- LOR : also uses a linear equation with independent predictors to predicte a value. The predicted value can be anywhere between negative infinity and positive infinity
+- we need the output of the algorithm to be class variable : 0 no , 1 yes 
+- Therefore, we are squashing the output of the linear equation into a range of 0 and 1. to squash that output we use : THE SIGMOID FUNCTION. 
+![alt text](images/image-33.png)
+### Sigmoid activation function  : 
+![alt text](images/image-34.png)
+![alt text](images/image-35.png)
+### mathematically this can be written as : [alt text](images/image-36.png)
+
+### type pf logistic regression : 
+
+1. Binary logistic regression : there is only two possible output 
+2. Multinomial logistic regression : three or more categories without orderingg 
+3. Ordinal logistic regression : three or more categories with ordering: example movie rating from 1 to 5 
+
+### cost function 
+- since we want to predict class values , we cannot use the same cost function as in linear regression algorithm. Therefore, we use a logarithmic loss function to calculate the cost fo missclassifying. 
+
+![alt text](images/image-37.png)
+![alt text](images/image-38.png)
+
+## KNN 
+
+- the principe of this algorithm is very simple : 
+- we gave it : training set , distance function d and a number k 
+- for each testing point x , we search on D the k nearest points to x using the distance d and we predict that the class of x is the majority class of the k neighbors
+- the goal of this algo is to predict the class of unlabled data 
+![alt text](images/image-39.png)
+![alt text](images/image-40.png)
+
