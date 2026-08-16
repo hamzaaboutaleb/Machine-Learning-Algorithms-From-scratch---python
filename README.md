@@ -367,3 +367,25 @@ why ?
 ![alt text](images/image-39.png)
 ![alt text](images/image-40.png)
 
+## Les arbres de decision : 
+
+- arbre permettant de classed des enregistrements par division hierarchiques en sous-classes. 
+- un noeud represente une classe de plus en plus fine depuis la racine 
+- un arc represente un predicat de partitionnement de la classe source 
+
+- Un attribut sert d'etiquette de classe (attriibut cible a predire), les autres permettant de partitionner 
+### Generation de l arbre : 
+- objectif : 
+- obtenir des classes homogenes 
+- couvrir au mieux les donnees 
+- comment choisir les attributs (Ai)?
+- comment isoler les valeurs discriminantes(vj) ? 
+![alt text](images/image-41.png)
+![alt text](images/image-42.png)
+![alt text](images/image-43.png)
+### Procedure de construction : 
+---
+![alt text](images/image-44.png)
+![alt text](images/image-45.png)
+
+### choix de l'attribut de division : 
