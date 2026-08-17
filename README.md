@@ -252,7 +252,60 @@ why ?
 - it reduces overfitting in certain applications. 
 ![alt text](images/image-16.png)
 
-# BIG PARTT TO BE ADD HERE LATER ! 
+## FEATURE CROSSES
+- feature crosses are a unique way to combine two or more categorical attributes into a single one.
+- this is extremely useful technique, when certain features together denote a property better than individually by themselves 
+     - - mathematically speaking you are doing a cross product between all possible values of the categorical features. 
+    ![alt text](images/image-53.png)
+
+- Consider a feature A, with two possible values {A1,A2}.Let B be a feature with possibilities {B1,B2}. then a feature cross between A and B (lets call it AB) would take one of the following values : {(A1, B1), (A1, B2), (A2, B1), (A2, B2)}.
+
+## FEATURE SELECTION
+- is the procecss of selecting a subset of relevant features for use in model construction.
+- Feature selection is another key part of the applied machine learning process, like model selection.
+- It is important to consider feature selection a part of the model selection process. If you do not, you may inadvertently introduce bias into your models which can result in overfitting.
+- Feature selection is different from dimensionality reduction.Both methods seek to reduce the number of attributes in tthe dataset, but a dimensionality reduction method do so by creating new combinations of attributes, where as feature selection methods include and exclude attributes present in the data without changing them. 
+- feature selection : using certain algorithms to automatically select a subset of your original features, for your final model. 
+- here you are not creating/modifying your current features, but rather pruning them to reduce noise/redundancy.
+
+- Feature selection is itself useful but it mostly acts as a filter muting out features thatt arent useful in addition to you existing features. 
+- Features selection menthods can be used to identify and remove ineeded, irrelevant and redundant attributes from data that do not contribute to the accuracy of a predictive model or may in fact decrease the accuracy of the model. 
+
+### objective : 
+the objective of valiable selection is three-fold : 
+1. Improving the prediction performance of the predictors
+2. Providing faster and more cost effective predictors 
+3. and providing a better understanding of the underlying process that generated the data. 
+
+### Feature selection algorithms : 
+there are three general classes of feature selection algos : 
+1. filter methods 
+2. wrapper methods 
+3. and embedded methods 
+
+### Filter feature selection 
+- Filter feature selection methods apply a statistical measure to assign a scoring to each feature. 
+- the features are ranked by he score and either selected to be kept or removed from the dataset. 
+- the methods are often univariate and consider the feature independently or with regard to the dependent variable
+- some examples of some filter methods include the Chi squared test , information gain and correlation coefficient scores. 
+![alt text](images/image-55.png)
+![alt text](images/image-56.png)
+### wrapper methods 
+- wrapper methods consider the selection of a set of features as a search problem, where different combinations are prepared, evaluated and compared to other combinations.
+- a predictive model us used to evaluate a combination of features and assign a score based on model accuracy 
+- the search process may be methodical such as a best first search, it may stochastic such as a random hill climbing algorithm or it may use heuristic like forward and backward passes to add and remove features 
+- an example of wrapper method is the recursive feature elimination algorithm. 
+![alt text](images/image-57.png)
+
+### Embedded methods 
+- Embedded methods learn which features best contribute to the accuracy of the model while the model is being created. 
+- the most common type of embedded feature selection methods are regularization methods 
+- Regularization methods are also called penalization methods that introduce additional constraints into the optimization of a predictive algo (such as a regression algorithm) that bias the model toward lower complexity (fewer coefficients) 
+- examples of regularization algos are the LASSO , elastic net and ridge regression 
+
+
+
+
 
 # Machine learning algorithms : 
 ![alt text](images/image-17.png)
@@ -367,25 +420,20 @@ why ?
 ![alt text](images/image-39.png)
 ![alt text](images/image-40.png)
 
-## Les arbres de decision : 
-
-- arbre permettant de classed des enregistrements par division hierarchiques en sous-classes. 
-- un noeud represente une classe de plus en plus fine depuis la racine 
+## Decision tree 
+- arbres permettant de classer des enregistrements par division hierarchiques en sous classes. 
+- un noeud represente une classe de plus en plus fine depuis la racine. 
 - un arc represente un predicat de partitionnement de la classe source 
+- un attribut sert d'etiquette de classe(attribut cible a predire), les autres permettant de partitionner
 
-- Un attribut sert d'etiquette de classe (attriibut cible a predire), les autres permettant de partitionner 
-### Generation de l arbre : 
-- objectif : 
-- obtenir des classes homogenes 
-- couvrir au mieux les donnees 
-- comment choisir les attributs (Ai)?
-- comment isoler les valeurs discriminantes(vj) ? 
-![alt text](images/image-41.png)
-![alt text](images/image-42.png)
-![alt text](images/image-43.png)
-### Procedure de construction : 
----
-![alt text](images/image-44.png)
-![alt text](images/image-45.png)
-
-### choix de l'attribut de division : 
+- Objectif : obtenir des classes homogenes , couvrir au mieux les donnees- 
+- comment choisir les attributs(Ai)?
+- commentt isoler les valeurs discriminantes(vj)?
+### arbres = ensemble de regles 
+![alt text](images/image-50.png)
+![alt text](images/image-51.png)
+![alt text](images/image-52.png)
+### procedure de construction 
+- recherche a chaque niveau de l'attribut le plus discriminant 
+- partition (noeud P) 
+- si tous
