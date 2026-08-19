@@ -302,7 +302,13 @@ there are three general classes of feature selection algos :
 - the most common type of embedded feature selection methods are regularization methods 
 - Regularization methods are also called penalization methods that introduce additional constraints into the optimization of a predictive algo (such as a regression algorithm) that bias the model toward lower complexity (fewer coefficients) 
 - examples of regularization algos are the LASSO , elastic net and ridge regression 
+### Feature selection checklist : 
 
+1. Do you have domain knowledge ? If yes, construct a better set of "ad hoc" features 
+2. are you features commensurate ? If no , consider normalizing them. 
+3. Do you suspect interdependence of features ? if yes , expand yoyr feature set by constructing conjuctive features or products or features , as much as your computer ressourcecs allow you. 
+4. Do you need to prune the input variables (e.g. for cost, speed or data understanding reasons)? if No, construct disjunctive features or weighted sums of feature 
+5. Do you need to asses features individually(e.g to understand )
 
 
 
