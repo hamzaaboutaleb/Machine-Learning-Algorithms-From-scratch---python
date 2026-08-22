@@ -531,4 +531,71 @@ for example suppose that we have the student's weight data and the student's wei
 ### procedure de construction 
 - recherche a chaque niveau de l'attribut le plus discriminant 
 - partition (noeud P) 
-- si tous
+- si tous les elements de P sont dans la meme classe alors retour 
+- pour chaque attribut A faire : evaluer la qualite du partitionnement sur A; 
+- utiliser le meilleur partitionnement pour diviser P en P1, P2,... Pn 
+- pour i=1 a faire Partition(Pi)
+
+![alt text](images/image-70.png)
+
+### choix de l'attribut de division : 
+--- 
+- Differentes mesures introduites 
+- - il s'agit d'ordonner le desordre 
+- - des indicateurs bases sur la theorie de l'information 
+- Choix des meilleurs attributs et valeurs 
+- - les meilleurs tests 
+- possibilite de retour arriere : 
+- - elaguer les arbres resultants (classes inutile)
+- - revoir certains partitionnements (zoom, reduire) 
+
+### Mesure de qualite : 
+- la mesure est appele fonction de qualite 
+- - Goodness Function en anglais
+- varie selon l'algorithme : 
+- - Gain d'information (ID3/C4.5)
+- - Suppose des attributs nominaux (discrets)
+- - suppose des attributs continus 
+- - suppose plusieurs valeurs de division pour chaque attribut  
+- - Peut-etre etendu pour des attributs nominaux 
+
+### Mesure d'impurete (variable nominale) : 
+--- 
+![alt text](images/image-71.png)
+
+### Mesure d'entropie : 
+--- 
+- Minimisation du desorde restant 
+- - pi = frequence relative de la classe i dans le noeud N (% d'elements de la classe i dans N)
+- Mesure d'entropie d'un segment s
+- - ![alt text](images/image-72.png)
+- minimiser son evolution globale(Quilan)
+![alt text](images/image-73.png)
+![alt text](images/image-74.png)
+
+### Types de tests : 
+--- 
+- Binaire ou n-aire 
+- - plus ou mois large et profond 
+- variable nominale 
+- - un predicat par valeur ou par liste de valeurs ? 
+- choix par niveau ou par classe 
+- - memes tests pour chaque noeud interne d'un niveau 
+- - arbres balances ou non 
+- Elimination de classes 
+- - vides ou presque, peu representatives
+### Probleme des attributs continus 
+- certains attributs sont continus par ex salaire 
+- decouper en sous ensemebles ordonnes (e-g deciles)
+- utiliser moyennes, mediane .. pour representer 
+- minimiser la variance, une mesure de dispersion ... 
+- investiguer differents cas et retenir le meilleur 
+- - exemple : 2, 4, 7 etc par decoupe d'intervalles en 2 successivement 
+
+### attributs continus : regression 
+--- 
+- partitionnement par droite de regression 
+- chaque noeud est represente par une formule de regression 
+- separation des donnees = point de non linearite 
+- 1 ou plusieurs regresseurs 
+![alt text](images/image-75.png)
