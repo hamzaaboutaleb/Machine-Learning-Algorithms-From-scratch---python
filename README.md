@@ -309,7 +309,96 @@ there are three general classes of feature selection algos :
 3. Do you suspect interdependence of features ? if yes , expand yoyr feature set by constructing conjuctive features or products or features , as much as your computer ressourcecs allow you. 
 4. Do you need to prune the input variables (e.g. for cost, speed or data understanding reasons)? if No, construct disjunctive features or weighted sums of feature 
 5. Do you need to asses features individually(e.g to understand )
+6. Do you need a preditor ? if no , stop 
+7. Do you suspect your data is dirty (has a few meaningless input patterns and/or noisy outputs or wrong class labels)? if yes detect the outliers examples using the top ranking variables obtained in step 5 as representation, check and/or discard them. 
+8. Do you know what to try first?if no, use a linear predictor. Use a forward selection method with "probe" method as a stopping criterion or use the 0 norm embedded method for comparison, following the ranking of step 5, construct a sequence of predictors of same nature using increasing subsets of features. can you match or improve performance with a smaller subset ? if ues , try a non linear predictor with that subset 
+9. Do you have new ideas , time , computational ressourcecs and enough examples ? if yes compare several feature selection methods including your new idea , correlation coefficients, backward selection and embedded methods. Use linear and non linear predictors.Select the best approach with model selection 
+10. Do you want a stable solution(to improve performance and/or understanding)? if yes, subsample your data and redo your analysis for several "bootstrap"
 
+### removing features with low variance : 
+- variancethreshold is a simple baseline approach to feature selection.It removes all features whose variance doesnt meet some threshold. By default, it removes all zero-variance features, i.e. features that have the same value in all samples. 
+- suppose that we have a dataset with boolean features and we want to remove all features that are one or zero (on and off) in more than 80% of the samples. Boolean features are bernoulli random variables, and the variance of such variables is given by : var[X]=p(1-p) 
+- so we can select using the threshold .8*(1-.8)
+
+### The recursive feature elimination (RFE) :
+---
+- The recursive feature elimination (RFE) method is a feature selection approach. It works by recursively removing attributes and building a model on those attributes that remain. It uses the model accuracy to identify which attributes(and combination of attributes) contribute the most to predicting the target attribute.
+![alt text](images/image-58.png)
+
+### feature importance : 
+--- 
+- Methods that use ensembles of decision trees(like random forest or extra trees) can also compute the relative importance of each attribute. These importance values can be used to inform a feature selection process. 
+![alt text](images/image-59.png)
+
+![alt text](images/image-60.png)
+### Feature scaling : 
+---
+- Feature scaling is a method used to standardize the range of independent variables or features of data. In data processing, it is also known as data normalization and is generally performed during the data preprocessing step. 
+### Feature scaling -- Standardization : 
+- the result of standardization(or z-score normalization) is that the features will be rescaled so that theyll have properties of a standard normal distribution with :![alt text](images/image-61.png)
+- where u is the mean(average) and σ is the standard deviation from the mean; standard scores(also called z scores) of the samples are calculated as follows : ![alt text](images/image-62.png)
+- standardizating the features so that they are centered around 0 with a standard deviation of 1 is not only important if we are comparing measurements that have different units, but it is also a general requirement for many machine learning algorithms
+- with features being on different scales, certain weights may update faster than others since the feature values xj play a role in the weight updates ![alt text](images/image-63.png)
+![alt text](images/image-64.png)
+- some examples of algos where feature scaling matters are : 
+1. K-nearestt neighbors with an euclidean distance measure if want all features to contribute equally 
+2. k means (see k nearest neighbors)
+3. logistic regression , SVM, perceptrons, neural networks etc. if you are using gradient descent/ascent-based optimization, otherwise some weights will update much faster than others. 
+4. linear discriminant analysis, principal component analysis, kernel proncipal component analysis since you wantt to find directions of maximizing the variance 
+
+ ### feature scaling - min max scaling : 
+
+ - in this approach, the data is scaled to a fixed range - usually between 0 and 1. 
+ - -> the cost of having this bounded range - in contrast to standardization - is that we will end up with smaller standard deviations, which can suppress the effect of outliers.
+ - A min max scaling is tyically done via the following equation :![alt text](images/image-65.png)
+- Example : <br>
+for example suppose that we have the student's weight data and the student's weight span [160 pounds - 200 pounds]. To rescale thisdata, we first substract 160 from each student's weight and divide the result by 40 (the difference between the maximum and minimum weights)
+### mean normalization : 
+![alt text](images/image-66.png)
+### standardization or min max scalingg ? 
+--- 
+- there is no obvious answer to this question : it really depends on the application. 
+- -> in the clustering analyses, standardization may be especially crucial in order to compare similarities between features based on certain distance measures 
+- -> a typical neural network algorithm require data that on a 0-1 scale
+
+## feature extraction : 
+![alt text](images/image-67.png)
+### what it is ? 
+---
+- feature extraction is a process of dimensionality reduction by which an initial set of raw data is reduced to more manageable groups for processing 
+- A characteristic of these large data sets is a large number of variables that require a lot of computing resosurces to process 
+- -> feature extraction is the name for methods that combine variables into features, effectively reducing the amount of data that must be processed while still accurately and completely describing the original data set 
+
+### what are ? 
+- dimension reduction refers to the process of converting a set of data having vast dimensions into data with lesser dimensions ensuringg that if conveys similar information concisely 
+- these techniques are typically used while solving machine learning problems to obtain better features for a classification or regression task 
+- with more variables , comes more trouble ! and to avoid this trouble, dimension reduction techniques comes to the rescue 
+![alt text](images/image-68.png)
+### why is this useful ? 
+--- 
+- the process of feature extraction is useful when you need to reduce the number of ressources needed for processing without losing important or relevant information. 
+- feature extraction can also reduce the amount of redundant data for a given analysis. Also, the reduction of the data and the machine's efforts in building variable combinations (features) faciliate the following learning and generalization steps in the machine learning process. 
+### general dimensionality reduction techniques : 
+--- 
+![alt text](images/image-69.png)
+### missing data : 
+--- 
+- missing data in the training data set can reduce the power / fit of a model or can lead to a biased model because we have not analysed the behavior and relationship with other variables correctly. It can lead to wrong prediction or classification. 
+### the common methods to perform dimension reduction ? 
+1. Missing values : while exploring the data, if we encounter missing values, what we do ? our first step should be to identify the reason then impute missingg values / drop variables using appropriate methods. 
+2. but what if we have too many missing values ? should we impute missing values or drop the variables. 
+### high correlation : 
+- high correlation : Dimensions exhibiting higher correlation can lower down the performance of mode. Morevover, it is not good to have multiple variables of similar information or variation also known as multicollinearity 
+- -> You can use Pearson(continuous variables) or polychoric(discrete variables) correlation matrix to identify the variables with high correlation and select one of them using VIF (Variabce inflation factor). variables having higher value(VIF>5) can be dropped. 
+### backward feature elimination : 
+- backward feature elimination : in this method, we  start with all n dimensions. Compute the sum of square of error (SSR) after eliminating each variable (n times). Then, identifying variables whose removal has produced the smallest increase the SSR and removing it finally, leaving us with n-1 input features. 
+- Repeat this process until no other variables can be dropped. 
+
+### Forward feature selection : 
+- reverse to this, we can use forward feature selection method, we select one variable and analyse the performance of model by adding another variable. Here, selection of variable is based on higher improvement in model performance. 
+
+## Factor analysis : 
+- Let's say some variables are highly correlated.These variables can be grouped by their correlations i.e. all variables in a particular group can be highly correlated among themselves but low correlation with variables or groups 
 
 
 
