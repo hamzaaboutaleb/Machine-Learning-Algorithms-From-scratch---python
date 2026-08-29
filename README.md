@@ -599,3 +599,51 @@ for example suppose that we have the student's weight data and the student's wei
 - separation des donnees = point de non linearite 
 - 1 ou plusieurs regresseurs 
 ![alt text](images/image-75.png)
+
+### Types d'arbres : 
+--- 
+![alt text](images/image-76.png)
+### methodes ID3 et C4.5 : 
+--- 
+- ID3 : le pouvoir discriminatoire (ou gain informationnel) d'une variable <= une variation d'entropie de Shannon lors de la partition de S 
+- C4.5 (ID3++) : support des variables continues , introduit un facteur "Gain ratio" visant a penaliser la proliferation des noeuds 
+- Criteres d'arret : seuls de gqain informationnel , d'effectif dans un noeud - test statique d'independence des variables(Ki2)
+
+### Methode CART : 
+---
+- Principes : - Si probleme a 2 classes, cherche la bi-partition minimisantt l'indice d'impurete de Gini . si probleme a N classes , cherche celle maximisant le gain d'information donne par l'indice de Towing 
+- Criteres d'arret : - seuil de gain informationnel - seuil d'effectif dans un noeud - Procedure d'elagage 
+
+### Methodes passant a l'echelle : 
+--- 
+- la plupart des algorithmes de base supposent que les donnees tiennent en memoire 
+- la recherche en bases de donnees a proposer des methodes permettantt de traiter de grandes BD 
+- Principales methodes : SLIQ SPRINT RAINFOREST PUBLIC
+
+
+
+
+## Le modele de Bayes : 
+--- 
+### la classification de bayes : 
+--- 
+- Une methode simple de classification supervisee 
+- basee sur l'utilisation du theoreme de Bayes : ![alt text](images/image-77.png)Où H est l’hypothèse à tester, et E est
+l’évidence associée à l’hypothèse
+![alt text](images/image-78.png)
+### methode 
+- une evidence E est donnee 
+- on calcule P(H|E) pour toutes les valeurs de H 
+- si P(H=h|E) est maximum alors on choisit : H=h 
+### exemple avec cas 
+### cas d'un numerateur egale a 0 :
+--- 
+- pour eviter d'avoire un numerateur egal a 0 et donc une probabilite egale a 0 dans le cas ou le nombre d’attributs ayant une certaine valeur serait 0, on ajoute une constante k à chaque valeur au numérateur et au dénominateur
+![alt text](images/image-79.png)
+### donnees manquantes : 
+--- 
+- les donnees manquantes sont traitees de facon satisfaisante par la methode de Bayes 
+- les valeurs manquantes sont ignorees et une probabilite de 1 est consideree 
+![alt text](images/image-80.png)
+
+### Support vector machine SVM
