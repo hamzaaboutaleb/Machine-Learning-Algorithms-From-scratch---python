@@ -1,14 +1,15 @@
 ### what is machine leanring ? 
-- machine learning is a branch of AI where computers learn patterns from historical data to make predictions or decisions , rather than relying on explicitly programmed rules. Instead of hardcodingg logic, we train algorithms on data so they can automatically improve their performance and adapt to new, unseen inputs over time 
+- machine learning is a branch of AI where computers learn patterns from historical data to make predictions or decisions , rather than relying on explicitly programmed rules. Instead of hardcoding logic, we train algorithms on data so they can automatically improve their performance and adapt to new, unseen inputs over time.
+
 - est une branche de l'ia ou les ordinateurs apprennent a partir de donnees historiques pour effectures des predictions ou prendre des decisions, plutot que de suivre des regles explicitement programmees. Au lieu de coder une logique rigide, nous entrainons des algorithmes sur des donnees pour qu'ils ameliorent automaqtiquement leurs performances et s'adaptent a de nouvelles informations au fil du templs. 
 
 ### Explain Epoch, Batch, Batch size and iteration ? 
-- Batch : a subster of the training dataset passed to the model in a single step to calculate loss and update weights 
+- Batch : a subset of the training dataset passed to the model in a single step to calculate loss and update weights 
 - Batch size : the exact number of data samples contained within a single batch (e.g. 32,64,or 128 samples). 
 - Iteration: One single gradient update(a step) where the model processes one batch and updates its internal parameters 
 - Epoch : One complete pass of the entire training dataset through the model(1 epoch= Total dataset size/ batch size in terms of iterations)
 ### what are embeddings in machine learning ? 
-- Embeddings are dense numerical vector representations of high dimensional data(such as words, images, or graph nodes) mapped into a lower dimensional continuous space- Inlike simple one hot encoding, embeddings capture semantic relationships and context : items with similar meanings or properties are placed close to each other in the vector space, allowing models to calculate semantic distance and similarity efficiently.
+- Embeddings are dense numerical vector representations of high dimensional data(such as words, images, or graph nodes) mapped into a lower dimensional continuous space- Unlike simple one hot encoding, embeddings capture semantic relationships and context : items with similar meanings or properties are placed close to each other in the vector space, allowing models to calculate semantic distance and similarity efficiently.
 
 ### what is Softmax Activation Function ? 
 - The softmax activation function converts a vector of raw, unnormalized real valued scores(logits) from a neural network into a probability distribution over multiple mutually exclusive classes.
@@ -133,9 +134,35 @@ To make a split, a decision tree evaluates every available feature and tests can
 
 When it comes to handling categorical features, it largely depends on the library implementation. Standard algorithms, like scikit-learn's implementation of CART, require numerical input, so categorical variables need to be preprocessed beforehand—using One-Hot Encoding for nominal variables or Ordinal Encoding when there is a natural hierarchy. However, some native implementations can handle categories directly by testing different subsets of categories, grouping them into left and right branches to find the exact combination of categories that optimizes node purity.
 ### How does the random forest algorithm work ? how does it improve over decision trees ? how does it reduce variance ? 
-### Exlain Ensemble Methods. why are they powerful ?  
-### What is the difference between bagging and boosting ? 
+Random forest is an ensemble learning algorithm based on bagging(Boostrap Aggregating) combined with feature subspace sampling, designed primarily to reduce the high variance typical of individual decision trees.
+1. How the algorithm works : 
+- 1. Bootstrapping : Given a dataset of N samples, we generate B distinct bootstrap samples by randomly sampling N rows with replacement. Each sample contains roughly 63.2% unique data points. 
+- 2. Node-Level Feature Sampling : we grow a decision tree on each bootstrap dataset. However, at every sing node split, instead of evaluating all p features, we randomly select a subset of m candidate features(typically $m = \sqrt{p}$ for classification, $m = p / 3$ for regression) and choose the best split strictly from that subset. 
+- 3. Full Growth : Each tree is grown deep without pruning to keep individual tree bbias low. 
+- 4. Aggregation : To make the final prediction : 
+    - classificaiton : we take a majority vote(or average predicted class probabilities)
+    - regression : we average the continuous outputs of all B trees. 
+2. Improvements over a single decision tree : 
+
+- Lower Generalization Error: Single trees overfit easily by memorizing noise. Averaging unpruned trees cancels out individual errors, yielding far better out-of-sample stability.
+
+- Built-in Out-of-Bag (OOB) Validation: Because each tree leaves out roughly 36.8% of the data during bootstrapping, these OOB samples act as a built-in validation set to estimate model performance without requiring a separate train/test split.
+
+- Robust Feature Importance: Instead of relying on a single tree's splits, Random Forest computes global feature importance (e.g., Mean Decrease in Impurity) by averaging node splits across hundreds of trees.
+
+3. How it reduces variance(the mathematical core) : 
+
+### Explain Ensemble Methods. why are they powerful ?  
+Ensemble methods are learning algorithms that combine the predictions of multiple base models(often called "weak learners") to produce a single final prediction that is sifnificantly more accurate and robust than any individual model could achieve on its own 
+1. The core intuition : wisdom of the crowd ..
+
+
+### What is the difference between bagging and boosting ?
+while both bagging and boosting are enemble techniques that combine multiple base learners into a single model. they differ fundementally in how trees are trained, how predictions are combined and which component of error they target. 
+ a table to be read
 ### what is gradient Boosting ? How does XGBoost work ? 
+gradient boosting is an ensemble algorithm that builds a predictive model iteratively by combining multiple weak learners - typically shallow decision trees. <br>
+Instead of building trees independetly in parallel(like random forest) , gradient boosting builds trees sequentially : each new tree is trained to predict the negative gradients(residuals) of the loss function calculated from all previous trees combined. 
 ### what are the key hyperparameters for XGBoost ? 
 ### Explain Gradient Boosting and its advantanges over Random Forests ? 
 ### Explain how logistic regression differs from linear regression ? 
@@ -169,21 +196,33 @@ When it comes to handling categorical features, it largely depends on the librar
 ### Why and how do you split data into a train, test and validation set ? 
 
 ## OPTIMIZATION :
+--- 
 
-### what is gradient descent ? how does itt work ? 
+### what is gradient descent ? how does it work ? 
+In machine learning gradientt descent is an iterative optimization algorithm used to minimize a loss function $L(\theta)$ by updating model parameters $\theta$ (weights and biases) in the direction of the steepest descent of the loss landscape. 
+1. The analogy & Core Intuition : Imagine you are standing at the top of a foggy mountain at night and wantt to reach the lowest valley : 
+    1. Sense the slope : You feel the ground beneath your feet to determine which direction slopes downward most steeply(the gradient)
+    2. Take a tep : You take a tep of a specific size(the learning rare n) in taht downhill direction 
+    3. Iteerate: You repeat this process step-by-step until the gorund flattens out(the gradient reaches zero), indicating you've reached minimum.
+2. The mathematical Algorithm : 
+
 
 ### what is stochastic gradient descent ? 
 
-### what are vanishing gradients ? 
+stochastic gradient descent is a variant of gradient descent optimizationa algorithm where , instead of calculating the exact gradient descent of the loss function using the entire dataset, we update the model parameters using a single randomly selected training sample at each step
 
+### what are vanishing gradients ? 
+the vanishing gradient problem occurs during the training of deep neural networks using backpropagation, where the gradients of the loss function with respect to the weights in the early(bottom) layers become exponentially small(approaching  zeor)
 ### what is a learning rate ? how to choose a good one ? 
+in ML, the learningg rate(denoted as $\eta$ or $\alpha$) is a fundemental hyperparameter that controls the step size taken during parameter updates as an optimization algorithm like gradient descent moves toward minimizing a cost function. 
 
 ### how does the learning rate affect model training ? 
-
+the learning rate directly determines how fast m how stably and how effectively a model's weights adapt during training. It dictates both the trajectory of the loss curve and the final quality of the learned weights
 ### how do you approach hyperparameter tuning ? 
-
+Appraoching hyperparameter tuning systematically requires balancing seach space exploration, computational cost and evaluative rifor to prevent data leakage and overfitting. 
+1, establish the validation strategy first 
 ### What is model quantization and when would you use it ? 
-
+model quantization is an optimization technique that reduces the memory footprint and computational cost of deep learningg models by converting their weights and activations from high-precision floating-point
 ### How do you ensure fairness and reduce bias in ML models ? 
 
 ### Explain grid search vs Random search vs Bayesian Optimization ? 
