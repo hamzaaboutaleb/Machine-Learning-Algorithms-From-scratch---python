@@ -235,3 +235,95 @@ model quantization is an optimization technique that reduces the memory footprin
 
 ### explain the RMSprop Optimizer ? 
 ### what is adagrad optimizer ? 
+
+# Deep learning : 
+
+### what are neural networks ? 
+is a machine learning model inspired by the structure of the human brain. At its core, it's designed to recognize complexe patterns, learn non-linear relationships and extract features from high-dimensional or unstructured data- like text , images or audio without needing hand crafted features. 
+- it consists of 3 main structural layers : 
+1. input layer : receives the raw features(such as numerical metrics or flattened image pixels)
+2. Hidden layer(s): One or more layers where feature extraction and non linear transformations occur. 
+3. Output layer : Produces the final prediction , such as a continuous value in regression or class probabilities in classification. 
+### Explain the feedforward neural network ? 
+- FNN often referred to as a Multi-layer perceptron MLP -- is the mostt foundational architecture in deep learning. It is called "feedforward" because information moves in one single direction : from the input nodes through any hidden layers directly to the output nodes. there are no loops, cycles or feedback connections within the network architecture
+### what are forward propagation and backward propagation ? 
+in a neural network, forward and backward propagation are the two fundamental phases that complete a single training step.Together, they allow the network to make a prediction, evaluate its error and update its parameters to improve future predictions.
+### what is backpropagation ? 
+Backpropagation is the core training algorithm used to optimize artificial neural networks.It calculates the exact gradient of the loss function with respect to every weight and bias in the network, allowing an optimizer(lile SGD or adam) to update those parameters and reduce prediction error.
+### can you name and explain a few hyperparameters used for training a neural network ? 
+- are the configuration settings set before training a neural network that control the learningg procecss and model architecture. Unlike weights and biases, hyperparameters are not learned from the data duringg training.
+- mention 6 hyperparameters.
+### what is the advantage of deep learning over traditional machine learning ? 
+- The single most critical advantange of Deep Learning over traditional machine learning is automated feature learning(or feature extraction). 
+- In traditional ML models (like logistic regression,random forest or SVMs), human domain expertise is required to manually extract, transform and select relevant features from raw data before passing them to the algorithm. Deep learning models by constrastt automatically discover representations and hierarchical features directly from raw data during training.
+### what are activation functions and why they are used ? 
+activation functions are mathematical equations applied to the output of each artificial neuron in a neural network. they determine whether and to what degree a neuron should fire or pass its signal to the next layer. 
+### Explain Sigmoid,tanH, ReLU, LeakyReLU, and softmax activation functions with their pros and cons? 
+### why are Sigmoid and Tanh nor preferred in the hidden layers of a neural network ? 
+### what is dropout, and why is it effective ? 
+
+- is a powerful regularization technique used in neural networks to prevent overfitting. 
+- during each iteration of training, dropout randomly "drops out" (deactivates) a specific fraction p (typically 0.2 to 0.5) of neurones in a given layer along with their incoming and outgoing connections. 
+
+
+### What is the effect of dropout on training and inference speed ? 
+### what is L1/L2 regularizaiton, and how does it affect a neural network ? 
+### what is batch normalization, and why is it used for ? 
+### what  are the hyperparameters for batch normalization that can be optimized ? 
+### what is parameter sharing in deep learning ? 
+### what is representation learning, and why is it useful ? 
+### what is a generative model, and how does it differ from a discriminative model ? 
+### can you explain how a generative model works ? 
+### explain Encoder-Decoder Architecture ? 
+### What is the difference between encoder-only,decoder-only, and encoder-decoder Transformer architectures ? 
+### What is Latent space ? 
+### what  are autoencoders ? Explain their layers and practical uses. 
+### What is a Variational Autoencoder(VAE) ,and how is it different from a traditional autoencoder? 
+### How does VAE impose a probabilistic structure on the latent space, and why is that important? 
+### what is the architecture of a Generative Adversarial Network (GAN) ? 
+### what are the roles of the generator and discriminator in a GAN ? 
+### what is mode collapse in GANs and how can it be mitigated? 
+### How are GANs used in image synthesis or image-to-image translation tasks ? 
+### Explain convolutional neural networks (CNN)? 
+### Explain filters in CNN? 
+### Explain the stride in CNN? 
+### Explain padding in CNN? 
+### Explain pooling in CNN? 
+### explain fully conntected layers in CNN? 
+### what is Recurrent neural networks RNN? 
+### what are the limitations of RNNs, and how are they solved ? 
+### What are LSTM and GRU? how do they solve long-term dependency issues ? 
+### what are the main gates in LSTM and their roles ? 
+### how to identify exploding gradient issues in your model ?  
+### what is a transformer architecture and what makes it differentt fron CNNs and RNNs ? 
+### what is the attention mechanism in deep learning , ans why is it significant ?
+### what is the basic difference between LSTM and Transformers ? 
+### Diffusion models ? 
+### why does diffusion work better than auto-regression ? 
+### explain transfer learning and when to use it ? 
+### what are Multimodal AI models, and how do they process differnt types of data? 
+### how do world models work ? 
+###  how do diffusion language models (DLMs) work ? 
+### Decoding deep RL from human preferences ?
+
+# NLP 
+### what are the advantages of transformers over traditional sequence-to-sequence models ? 
+### what are the limitations of transformers, and how can they be addressed ?
+### whatt is BERT, and how does it improve language understanding ? 
+### how are transformers trained (pre-trained and fine tuning) ? 
+### explain transfer learning in the context of Transformers ? 
+### describe the process of text generation using transformer based language models ? 
+### what are Seq2Seq models ? 
+### Compare N-gram models and deep learning models(trade-offs) ? 
+### what are n-gram model? 
+### what is TF-IDF and how does it differ from word embeddings ? 
+### what is bag-of-words ? 
+### what is perplexity used in NLO ? 
+### what is stemming vs lemmatization ? 
+### what is Latent semantic indexing ? 
+### whatt is dependency parsing ? 
+### what are some approaches for text summarization ? 
+### what are word embeddings? 
+### what is word2vec? 
+### what is t-SNE and how is it used for NLP ? 
+### Explain colBERT? 

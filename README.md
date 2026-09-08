@@ -646,4 +646,24 @@ l’évidence associée à l’hypothèse
 - les valeurs manquantes sont ignorees et une probabilite de 1 est consideree 
 ![alt text](images/image-80.png)
 
-### Support vector machine SVM
+# Support vector machine SVM: 
+
+## Historique du SVM : 
+- classifieur devenu populaire depuis que, partant d'images formees de pixels, il a permis des performances egales aux RNA pour reconnaitre l'ecriture manuscrite.
+- Proche de  
+    - Separateurs a vastes marges
+    - Methodes a fonctions noyau 
+    - Reseaux de neurones a bases radiales
+## Probleme a deux classes lineairement separables : 
+---
+- Plusieurs surfaces de decision existent pour separer les classes; laquelle choisir ? 
+![alt text](images/image-81.png)
+
+### exemples de choix mal avises 
+![alt text](images/image-82.png)
+![alt text](images/image-83.png)
+![alt text](images/image-84.png)
+### probleme d'optimisation quadratique : 
+- maximiser le pouvoir de generalisation du classeur revient donc a trouver w et b tels que : 
+![alt text](images/image-85.png)
+- si d est la dimension des xi(nombre d0entrees), cela revient a regler d¡1 parametres (les elements de w,plus b)
