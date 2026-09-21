@@ -267,8 +267,18 @@ activation functions are mathematical equations applied to the output of each ar
 
 
 ### What is the effect of dropout on training and inference speed ? 
+- during  training, dropout slightly increases the overall computation time per epoch. While it randomly zeroes out neurons -- which theoretically eliminates their activations -- standard deep learning frameworks still excecute the full forward pass operations, plus the added overhead of generating random binary masks and scaling the surviving activations. In backpropagation, gradient calculations and memory overhead are similarly maintained making training marginally slower rather than faster .
+-  At inference time, dropout is completely deactivated. No random masks are generated, and no activations are dropped. The model operates as a single, deterministic network without any runtime evaluation overhead, meaning inference speed is unaffected by dropout and runs at full standard execution speed.
 ### what is L1/L2 regularizaiton, and how does it affect a neural network ? 
+- L1 and L2 regularization are techniques used to prevent overfitting in neural networks by addingg a penalty term based on the magnitude of the network's weights(W) to the loss function. 
+1. Mathematical formulation : 
+- Regularization modifies the total loss function $\mathcal{L}_{\text{total}}$ by adding a complexity penalty to the original empirical loss $\mathcal{L}_{0}$ (e.g., Cross-Entropy or Mean Squared Error):
+![alt text](images/image-8.png)
+![alt text](images/image-9.png)
+
 ### what is batch normalization, and why is it used for ? 
+- batch normalization is a technique we use to stabilize and speed up the training of deep neural networks.
+- during training, as the weights in earlier layers change, the distribution of inputs to later layers keeps shifting -- this is known as internal covariate shift. It forces downstream layes to constantly readjust, which slows down convergence and forces us to use very low learning rates. 
 ### what  are the hyperparameters for batch normalization that can be optimized ? 
 ### what is parameter sharing in deep learning ? 
 ### what is representation learning, and why is it useful ? 
